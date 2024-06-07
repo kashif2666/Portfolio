@@ -55,6 +55,10 @@
   color: rgb(1, 1, 1);
   transform: scale(1.3);
 }
+.footer > div > a:nth-child(6):hover{
+  color: #bb0b1b;
+  transform: scale(1.3);
+}
 
 .footerContactBtn{
   background-color: #fff;

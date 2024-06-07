@@ -4,6 +4,7 @@ import "./Footer.css";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { BsGithub, BsInstagram, BsLinkedin, BsTwitterX } from "react-icons/bs";
+import { SiGmail } from "react-icons/si";
 
 const Footer = () => {
   return (
@@ -58,6 +59,9 @@ const Footer = () => {
           target="blank"
         >
           <BsTwitterX />
+        </a>
+        <a href="mailto:kashifjsr7@gmail.com" target="blank">
+          <SiGmail />
         </a>
       </div>
     </div>
