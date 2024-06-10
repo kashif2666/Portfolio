@@ -5,8 +5,9 @@ import moonImage from "../../Images/moon.jpg";
 import venusImage from "../../Images/venus.jpg";
 import spaceImage from "../../Images/space.jpg";
 import { Typography } from "@mui/material";
-import { Timeline } from "@mui/icons-material";
+import { MouseOutlined, Timeline } from "@mui/icons-material";
 import TimeLine from "../TimeLine/TimeLine";
+import { Link } from "react-router-dom";
 import {
   SiReact,
   SiJavascript,
@@ -95,10 +96,46 @@ const Home = ({ timelines, youtubes, skills }) => {
       renderer.render(scene, camera);
     };
     animate();
+    return window.addEventListener("scroll", () => {
+      camera.rotation.y = window.scrollY * 0.003;
+      camera.rotation.z = window.scrollY * 0.001;
+
+      const skillsBox = document.getElementById("homeSkillsBox");
+      if (skillsBox) {
+        // Toggle the animation based on the scroll position
+        if (window.scrollY > 1100) {
+          console.log(window.scrollY);
+          skillsBox.style.animationName = "homeSkillsBoxAnimationOn";
+        } else {
+          skillsBox.style.animationName = "homeSkillsBoxAnimationOff";
+        }
+      }
+    });
   }, []);
   return (
     <div className="home">
       <canvas className="homeCanvas"></canvas>
+      <div className="homeCanvasContainer">
+        <Typography variant="h1">
+          <p>K</p>
+          <p>A</p>
+          <p>S</p>
+          <p>H</p>
+          <p>I</p>
+          <p>F</p>
+        </Typography>
+
+        <div className="homeCanvasBox">
+          <Typography variant="h2">DESIGNER</Typography>
+          <Typography variant="h2">DEVELOPER</Typography>
+          <Typography variant="h2">STUDENT</Typography>
+          <Typography variant="h2">CONTENT CREATOR</Typography>
+        </div>
+        <Link to="/projects">VIEW WORK</Link>
+      </div>
+      <div className="homeScrollBtn">
+        <MouseOutlined />
+      </div>
       <div className="homeContainer">
         <Typography variant="h3">TIMELINE</Typography>
         <TimeLine timelines={timelines} />
@@ -126,7 +163,7 @@ const Home = ({ timelines, youtubes, skills }) => {
           </div>
         </div>
         <div className="cubeShadow"></div>
-        <div className="homeSkillsBox">
+        <div className="homeSkillsBox" id="homeSkillsBox">
           <FaJava />
           <SiReact />
           <SiJavascript />
