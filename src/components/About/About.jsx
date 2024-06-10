@@ -1,22 +1,15 @@
 import React from "react";
 import "./About.css";
 import { Typography } from "@mui/material";
-const About = () => {
+const About = ({ about }) => {
   return (
     <div className="about">
       <div className="aboutContainer">
-        <Typography>
-          Writing code is like composing poetry; every line has a purpose, every
-          function a rhythm.
-        </Typography>
+        <Typography>{about.quote}</Typography>
       </div>
       <div className="aboutContainer2">
         <div>
-          <img
-            src="https://github.com/kashif2666/Portfolio/blob/main/src/Images/WhatsApp%20Image%202024-06-07%20at%2016.58.15.jpeg?raw=true"
-            alt="Kashif"
-            className="aboutAvtar"
-          />
+          <img src={about.avatar.url} alt="Kashif" className="aboutAvtar" />
           <Typography
             variant="h4"
             style={{
@@ -24,15 +17,16 @@ const About = () => {
               color: "black",
             }}
           >
-            Md Kashif Raza Ansari
+            {about.name}
           </Typography>
-          <Typography>Full Stack Developer</Typography>
+          <Typography>{about.title}</Typography>
           <Typography
             style={{
               margin: "1vmax 0",
+              textAlign: "center",
             }}
           >
-            I am a Student
+            {about.subtitle}
           </Typography>
         </div>
         <div>
@@ -44,9 +38,7 @@ const About = () => {
               textAlign: "right",
             }}
           >
-            I am Md Kashif Raza Ansari, a computer science and engineering
-            student at RVS College of Engineering and Technology. I aim to
-            become a full stack developer with a focus on the MERN stack.
+            {about.description}
           </Typography>
         </div>
       </div>

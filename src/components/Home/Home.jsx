@@ -20,7 +20,7 @@ import {
 import { FaJava } from "react-icons/fa6";
 import YoutubeCard from "../YoutubeCard/YoutubeCard";
 
-const Home = () => {
+const Home = ({ timelines, youtubes, skills }) => {
   useEffect(() => {
     const textureLoader = new THREE.TextureLoader();
     const moonTexture = textureLoader.load(moonImage);
@@ -101,46 +101,28 @@ const Home = () => {
       <canvas className="homeCanvas"></canvas>
       <div className="homeContainer">
         <Typography variant="h3">TIMELINE</Typography>
-        <TimeLine timelines={[1, 2, 3, 4]} />
+        <TimeLine timelines={timelines} />
       </div>
       <div className="homeSkills">
         <Typography variant="h3">SKILLS</Typography>
         <div className="homeCubeSkills">
           <div className="homeCubeSkillsFaces homeCubeSkillsFace1">
-            <img
-              src="https://images.pexels.com/photos/7736057/pexels-photo-7736057.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt="Face1"
-            />
+            <img src={skills.image1.url} alt="Face1" />
           </div>
           <div className="homeCubeSkillsFaces homeCubeSkillsFace2">
-            <img
-              src="https://images.pexels.com/photos/73873/star-clusters-rosette-nebula-star-galaxies-73873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt="Face2"
-            />
+            <img src={skills.image2.url} alt="Face2" />
           </div>
           <div className="homeCubeSkillsFaces homeCubeSkillsFace3">
-            <img
-              src="https://images.pexels.com/photos/1938348/pexels-photo-1938348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt="Face3"
-            />
+            <img src={skills.image3.url} alt="Face3" />
           </div>
           <div className="homeCubeSkillsFaces homeCubeSkillsFace4">
-            <img
-              src="https://images.pexels.com/photos/6444367/pexels-photo-6444367.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt="Face4"
-            />
+            <img src={skills.image4.url} alt="Face4" />
           </div>
           <div className="homeCubeSkillsFaces homeCubeSkillsFace5">
-            <img
-              src="https://images.pexels.com/photos/6249821/pexels-photo-6249821.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt="Face5"
-            />
+            <img src={skills.image5.url} alt="Face5" />
           </div>
           <div className="homeCubeSkillsFaces homeCubeSkillsFace6">
-            <img
-              src="https://images.pexels.com/photos/4030371/pexels-photo-4030371.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt="Face6"
-            />
+            <img src={skills.image6.url} alt="Face6" />
           </div>
         </div>
         <div className="cubeShadow"></div>
@@ -159,22 +141,15 @@ const Home = () => {
       <div className="homeYoutube">
         <Typography variant="h3">YOUTUBE VIDEOS</Typography>
         <div className="homeYoutubeWrapper">
-          <YoutubeCard
-            image="https://images.pexels.com/photos/7736057/pexels-photo-7736057.jpeg?auto=compress&cs=tinysrgb&w=600"
-            title="Sample Video"
-          />
-          <YoutubeCard
-            image="https://images.pexels.com/photos/7736057/pexels-photo-7736057.jpeg?auto=compress&cs=tinysrgb&w=600"
-            title="Sample Video"
-          />
-          <YoutubeCard
-            image="https://images.pexels.com/photos/7736057/pexels-photo-7736057.jpeg?auto=compress&cs=tinysrgb&w=600"
-            title="Sample Video"
-          />
-          <YoutubeCard
-            image="https://images.pexels.com/photos/7736057/pexels-photo-7736057.jpeg?auto=compress&cs=tinysrgb&w=600"
-            title="Sample Video"
-          />
+          {youtubes.map((item) => (
+            <YoutubeCard
+              image={item.image.url}
+              title={item.title}
+              url={item.url}
+              id={item._id}
+              key={item._id}
+            />
+          ))}
         </div>
       </div>
     </div>

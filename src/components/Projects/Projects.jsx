@@ -4,15 +4,24 @@ import { Button, Typography } from "@mui/material";
 import { AiOutlineProject } from "react-icons/ai";
 import { Delete } from "@mui/icons-material";
 import { FaRegSmileWink } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { deleteProject, getUser } from "../../actions/user";
 
-const ProjectCard = ({
+export const ProjectCard = ({
   url,
   projectImage,
   projectTitle,
   description,
   technologies,
   isAdmin = false,
+  id,
 }) => {
+  const dispatch = useDispatch();
+
+  const deleteHandler = async (id) => {
+    await dispatch(deleteProject(id));
+    dispatch(getUser);
+  };
   return (
     <>
       <a href={url} className="projectCard" target="blank">
@@ -31,6 +40,7 @@ const ProjectCard = ({
           style={{
             color: "rgba(40,40,40,0.7)",
           }}
+          onClick={() => deleteHandler(id)}
         >
           <Delete />
         </Button>
@@ -39,8 +49,7 @@ const ProjectCard = ({
   );
 };
 
-const Projects = () => {
-  const projects = [1, 2, 3];
+const Projects = ({ projects }) => {
   return (
     <div className="projects">
       <Typography variant="h3">
@@ -49,13 +58,15 @@ const Projects = () => {
       </Typography>
 
       <div className="projectWrapper">
-        {projects.map((project, index) => (
+        {projects.map((item) => (
           <ProjectCard
-            url="https://github.com/kashif2666"
-            projectImage="https://images.pexels.com/photos/7736057/pexels-photo-7736057.jpeg?auto=compress&cs=tinysrgb&w=600"
-            projectTitle="Sample Project"
-            description="This is a description of project Loremihhgffgh jihgfjkk oihgvhj joihgfgh"
-            technologies="MongoDb NodeJs Express React"
+            key={item._id}
+            id={item._id}
+            url={item.url}
+            projectImage={item.image.url}
+            projectTitle={item.title}
+            description={item.description}
+            technologies={item.techStack}
           />
         ))}
       </div>
